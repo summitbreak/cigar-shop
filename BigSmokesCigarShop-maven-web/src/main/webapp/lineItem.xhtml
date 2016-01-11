@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <body>
+        <ui:composition template="/lineItem-template.xhtml">
+
+            <ui:define name="title">Line Items for Cart/Order in Status: #{orderBean.cart.status}</ui:define>
+            <ui:define name="body">
+                <h:form>
+                    <p:dataTable var="lineItem"
+                                 id="lineItems"
+                                 value="#{orderBean.cart.lineItems}"
+                                 paginator="true" rows="10">
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Item ID" />
+                            </f:facet>
+                            <h:outputText value="#{lineItem.itemId}" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Quantity" />
+                            </f:facet>
+                            <h:inputText value="#{lineItem.quantity}" />
+                            <h:commandLink action="#{orderBean.updateCigarQuantity(lineItem, lineItem.quantity)}" value="Update"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Cigar Description" />
+                            </f:facet>
+                            <h:outputText value="#{lineItem.cigar.description}" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Price"/>
+                            </f:facet>
+                            <h:outputText value="#{lineItem.cigar.price}"/>
+                        </p:column>
+                    </p:dataTable>
+                    <br />
+
+                    <h2><h:outputText value="Total for Cart #{orderBean.cart.calculateTotal()}"/></h2>
+                    <h:commandButton value="Back To Cigars" action="cigarSearch" />
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+    </body>
+</html>
+

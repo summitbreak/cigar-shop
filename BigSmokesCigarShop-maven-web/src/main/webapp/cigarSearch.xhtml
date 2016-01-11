@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>Cigar Listing</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:outputLabel value="Categories"/>
+            <h:selectOneMenu id="category" value="#{cigarBean.category.categoryCode}">
+                <f:selectItems value="#{cigarBean.categories}"/>
+            </h:selectOneMenu>
+            <h:commandButton id="showCigars" value="Update" action="#{cigarBean.update}"/>
+            <h:commandButton id="showCart" value="Show Cart" action="#{orderBean.showCart}"/>
+            <h:commandButton id="showOrders" value="Show Orders" action="#{orderBean.showOrders}"/>
+            
+            <h2><h:outputText value="Cigar Listing"/></h2>
+            <p:dataTable var="item" value="#{cigarBean.cigars}" id="cigarList"
+                         paginator="true" rows="10">
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Cigar ID" />
+                    </f:facet>
+                    <h:commandLink action="#{cigarBean.showDetails(item)}" value="#{item.productId}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Name"/>
+                    </f:facet>
+                    <h:commandLink action="#{cigarBean.showDetails(item)}" value="#{item.name}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Category Code"/>
+                    </f:facet>
+                    <h:outputText value="#{item.category.categoryCode}"/>
+                </p:column>
+                <!--p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Category"/>
+                    </f:facet>
+                    <h:outputText value="#{item.category.name}"/>
+                </p:column-->
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Description"/>
+                    </f:facet>
+                    <h:outputText value="#{item.description}"/>
+                </p:column>
+                <!--p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Quantity Available"/>
+                    </f:facet>
+                    <h:outputText value="#{item.quantityAvailable}"/>
+                </p:column-->
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Price"/>
+                    </f:facet>
+                    <h:outputText value="#{item.price}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Add To Cart"/>
+                    </f:facet>
+                    <h:commandLink action="#{orderBean.addCigarToCart(item.productId)}" value="Add To Cart"/>
+                </p:column>
+            </p:dataTable>
+            
+        </h:form>
+    </h:body>
+</html>

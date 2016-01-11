@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <body>
+        <ui:composition template="/order-template.xhtml">
+            <ui:define name="title">Order Java Persistence Example</ui:define>
+            <ui:define name="body">
+
+            </ui:define>
+
+            <ui:define name="ordersTable">
+
+                <h:dataTable
+                    var="order"
+                    summary="Table of orders"
+                    value="#{orderBean.allOrders}"
+                    rules="all"
+                    cellpadding="5">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Order ID" />
+                        </f:facet>
+                        <h:form>
+                            <h:commandLink value="#{order.orderId}" actionListener="#{orderBean.showOrder}" action="lineItem">
+                                <f:param name="showOrderId" id="showOrderId" value="#{order.orderId}" />
+                            </h:commandLink>
+                        </h:form>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Shipment Info" />
+                        </f:facet>
+                        <h:outputText value="#{order.shipmentInfo}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Status" />
+                        </f:facet>
+                        <h:outputText value="#{order.status}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Last Updated" />
+                        </f:facet>
+                        <h:outputText value="#{order.lastUpdate}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Actions" />
+                        </f:facet>
+                        <h:form>
+                            <h:commandLink value="Delete" actionListener="#{orderBean.removeOrder}" action="order">
+                                <f:param name="deleteOrderId" id="deleteOrderId" value="#{order.orderId}" />
+                            </h:commandLink>
+                        </h:form>
+                    </h:column>
+                </h:dataTable>  
+            </ui:define>
+
+        </ui:composition>
+    </body>
+</html>
+

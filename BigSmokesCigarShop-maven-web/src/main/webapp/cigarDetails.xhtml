@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>Cigar Details</title>
+    </h:head>
+    <h:body>
+        <h2><h:outputText value="Cigar Details"/></h2>
+        <h:form>
+            <h:panelGrid columns="2" bgcolor="#eff5fa">
+                <h:outputLabel value="Cigar ID:"/>
+                <h:inputText id="productId" value="#{cigarBean.selectedCigar.productId}" disabled="true"/>
+                <h:outputLabel value="Cigar Name:"/>
+                <h:inputText id="name" value="#{cigarBean.selectedCigar.name}"/>
+                <h:outputLabel value="Category Code:"/>
+                <h:inputText id="categoryCode" value="#{cigarBean.selectedCigar.category.categoryCode}"/>
+                <h:outputLabel value="Cigar Description:"/>
+                <h:inputText id="description" value="#{cigarBean.selectedCigar.description}"/>
+                <h:outputLabel value="Quantity Available"/>
+                <h:inputText id="quantityAvailable" value="#{cigarBean.selectedCigar.quantityAvailable}"/>
+                <h:outputLabel value="Price"/>
+                <h:inputText id="price" value="#{cigarBean.selectedCigar.price}"/>
+            </h:panelGrid>
+            <h:commandButton id="back" value="Back" action="cigarSearch"/>
+            <h:commandButton id="addToCart" value="Add To Cart" action="#{orderBean.addCigarToCart(cigarBean.selectedCigar.productId)}"/>
+        </h:form>
+        <p:messages showDetail="true" />
+    </h:body>
+</html>
