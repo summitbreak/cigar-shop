@@ -45,10 +45,10 @@ public class DBConfigBean {
                 "PT",
                 "Petite");
 
-        productManagerEJB.createCigar(1l, "PT", "Petite Cigar", "Petite Cigar Description", 12.00);
-        productManagerEJB.createCigar(2l, "ST", "Standard Cigar", "Standard Cigar Description", 10.00);
-        productManagerEJB.createCigar(3l, "FL", "Flavoured Cigar", "Flavoured Cigar Description", 14.00);
-        productManagerEJB.createCigar(4l, "ST", "Standard Cigar", "Malboro Standard Cigar", 16.00);
+        productManagerEJB.createCigar("PT", "Petite Cigar", "Petite Cigar Description", 12.00);
+        productManagerEJB.createCigar("ST", "Standard Cigar", "Standard Cigar Description", 10.00);
+        productManagerEJB.createCigar("FL", "Flavoured Cigar", "Flavoured Cigar Description", 14.00);
+        productManagerEJB.createCigar("ST", "Standard Cigar", "Malboro Standard Cigar", 16.00);
 /*
         productManagerEJB.addPartToBillOfMaterial("SDFG-ERTY-BN", 7, "1234-5678-01", 1);
         productManagerEJB.addPartToBillOfMaterial("SDFG-ERTY-BN", 7, "9876-4321-02", 2);
