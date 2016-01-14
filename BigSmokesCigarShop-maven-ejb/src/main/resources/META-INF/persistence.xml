@@ -2,19 +2,21 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="BigSmokesCigarShop-ejbPU" transaction-type="JTA">
     <!--provider>org.hibernate.ejb.HibernatePersistence</provider-->
-    <jta-data-source>jdbc/sample</jta-data-source>
+    <jta-data-source>java:/jdbc/CigarShop</jta-data-source>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
     <properties>
-      <property name="eclipselink.logging.level.sql" value="FINE"/>
+      <!--property name="eclipselink.logging.level.sql" value="FINE"/>
       <property name="eclipselink.ddl-generation" value="create-tables" />
-      <property name="eclipselink.ddl-generation.output-mode" value="database" />
+      <property name="eclipselink.ddl-generation.output-mode" value="database" /-->
       <!-- http://stackoverflow.com/questions/6895868/hibernate-jpa-with-jta-and-glassfish-application-server-doesnt-seem-to-commit -->
-      <!--property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
       <property name="hibernate.show_sql" value="true"/>
-      <property name="hibernate.transaction.factory_class" value="org.hibernate.transaction.JTATransactionFactory"/>
-      <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
-      <property name="hibernate.connection.autocommit" value="true"/-->
+      <property name="hibernate.format_sql" value="true" />
+      <property name="hibernate.hbm2ddl.auto" value="create"/>
+      <property name="hibernate.connection.autocommit" value="true"/>
+      <!--property name="hibernate.hbm2ddl.auto" value="create-drop"/-->
+      <!--property name="hibernate.transaction.factory_class" value="org.hibernate.transaction.JTATransactionFactory"/-->
     </properties>
     <!--properties>
       <property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />

@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.Iterator;
 import static javax.persistence.CascadeType.ALL;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -101,7 +102,7 @@ public class Order implements java.io.Serializable {
         this.shipmentInfo = shipmentInfo;
     }
 
-    @OneToMany(cascade = ALL, mappedBy = "order")
+    @OneToMany(cascade = ALL, mappedBy = "order", fetch=FetchType.EAGER)
     public Collection<LineItem> getLineItems() {
         return lineItems;
     }

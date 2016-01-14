@@ -63,17 +63,11 @@ public class Cigar implements Serializable {
     public Cigar() {
     }
 
-    public Cigar(Long productId) {
-        this.productId = productId;
-    }
-
-    public Cigar(Long productId, Category category, String name) {
-        this.productId = productId;
+    public Cigar(Category category, String name) {
         this.category = category;
         this.name = name;
     }
-    public Cigar(Long productId, Category category, String name, String desc, Double price) {
-        this.productId = productId;
+    public Cigar(Category category, String name, String desc, Double price) {
         this.category = category;
         this.name = name;
         this.description = desc;

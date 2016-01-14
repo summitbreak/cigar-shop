@@ -61,15 +61,15 @@ public class ProductManagerEJB {
         return cat;
     }
 
-    public Cigar createCigar(Long productId, String categoryCode, String name, String desc, Double price)
+    public Cigar createCigar(String categoryCode, String name, String desc, Double price)
     {
         Cigar cigar;
         try {
             Category category = em.find(Category.class, categoryCode);
-            cigar = new Cigar( productId, category, name, desc, price);
-            logger.log(Level.INFO, "Created Cigar {0}-{1}-{2}-{3}-{4}",new Object[] { productId, categoryCode, name, desc, price });
+            cigar = new Cigar( category, name, desc, price);
+            logger.log(Level.INFO, "Created Cigar {0}-{1}-{2}-{3}-{4}",new Object[] { cigar.getProductId(), categoryCode, name, desc, price });
             em.persist(cigar);
-            logger.log(Level.INFO, "Persisted Cigar {0}-{1}-{2}-{3}-{4}",new Object[] { productId, categoryCode, name, desc, price });
+            logger.log(Level.INFO, "Persisted Cigar {0}-{1}-{2}-{3}-{4}",new Object[] { cigar.getProductId(), categoryCode, name, desc, price });
         } catch (Exception ex) {
             throw new EJBException(ex.getMessage());
         }
