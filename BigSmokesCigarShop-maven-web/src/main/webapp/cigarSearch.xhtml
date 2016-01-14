@@ -7,7 +7,7 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.prime.com.tr/ui">
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <title>Cigar Listing</title>
@@ -43,24 +43,12 @@ and open the template in the editor.
                     </f:facet>
                     <h:outputText value="#{item.category.categoryCode}"/>
                 </p:column>
-                <!--p:column>
-                    <f:facet name="header">
-                        <h:outputText value="Category"/>
-                    </f:facet>
-                    <h:outputText value="#{item.category.name}"/>
-                </p:column-->
                 <p:column>
                     <f:facet name="header">
                         <h:outputText value="Description"/>
                     </f:facet>
                     <h:outputText value="#{item.description}"/>
                 </p:column>
-                <!--p:column>
-                    <f:facet name="header">
-                        <h:outputText value="Quantity Available"/>
-                    </f:facet>
-                    <h:outputText value="#{item.quantityAvailable}"/>
-                </p:column-->
                 <p:column>
                     <f:facet name="header">
                         <h:outputText value="Price"/>
