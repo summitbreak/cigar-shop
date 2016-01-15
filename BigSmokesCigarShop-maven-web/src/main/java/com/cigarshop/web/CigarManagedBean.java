@@ -11,27 +11,25 @@ import javax.enterprise.context.Dependent;
 import com.cigarshop.ejb.ProductManagerEJB;
 import com.cigarshop.entity.Category;
 import com.cigarshop.entity.Cigar;
-import com.cigarshop.helper.InventorySystemGateway;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-//import javax.enterprise.context.SessionScoped ;
-import javax.faces.context.FacesContext;
+//import javax.faces.application.FacesMessage;
+//import javax.faces.bean.ManagedBean;
+//import javax.faces.bean.SessionScoped;
+//import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+//import javax.servlet.http.HttpServletRequest;
+//import javax.servlet.http.HttpSession;
 
 /**
  * See discussion on http://stackoverflow.com/questions/9246141/passing-a-jsf2-managed-pojo-bean-into-ejb-or-putting-what-is-required-into-a-tra?rq=1
  * @author smalyshev
  */
-//@Named(value = "cigarBean")
-//@Dependent
-@ManagedBean(name = "cigarBean")
-@SessionScoped
+@javax.inject.Named(value = "cigarBean")
+@javax.enterprise.context.SessionScoped
+//@javax.faces.bean.ManagedBean(name = "cigarBean")
+//@javax.faces.bean.SessionScoped
 public class CigarManagedBean implements java.io.Serializable{
     @EJB
     private ProductManagerEJB productManagerEJB;
