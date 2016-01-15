@@ -5,40 +5,25 @@
  */
 package com.cigarshop.web;
 
-import javax.inject.Named;
-import javax.enterprise.context.Dependent;
-
 import com.cigarshop.ejb.OrderManagerEJB;
 import com.cigarshop.ejb.ProductManagerEJB;
 import com.cigarshop.entity.Category;
 import com.cigarshop.entity.Cigar;
 import com.cigarshop.entity.LineItem;
 import com.cigarshop.entity.Order;
-import com.cigarshop.helper.InventorySystemGateway;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIParameter;
-//import javax.enterprise.context.SessionScoped ;
-import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
-import javax.faces.model.SelectItem;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 /**
  * See discussion on http://stackoverflow.com/questions/9246141/passing-a-jsf2-managed-pojo-bean-into-ejb-or-putting-what-is-required-into-a-tra?rq=1
  * @author smalyshev
  */
-//@Named(value = "cigarBean")
-//@Dependent
-//TODO: replace managedBean with CDI objects and test it
-@ManagedBean(name = "orderBean")
-@SessionScoped
-public class OrderManagedBean {
+@javax.inject.Named(value = "orderBean")
+@javax.enterprise.context.SessionScoped
+public class OrderManagedBean implements java.io.Serializable {
     @EJB
     private ProductManagerEJB productManagerEJB;
     @EJB
