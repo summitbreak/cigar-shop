@@ -21,6 +21,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.ejb.EJBException;
+import javax.ejb.Remote;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.jms.Connection;
@@ -40,9 +41,9 @@ import javax.persistence.Query;
  * @author smalyshev
  */
 @Stateless
-@LocalBean
-//@Named
-public class OrderManagerEJB {
+@Remote(OrderManager.class)
+//@LocalBean
+public class OrderManagerEJB implements OrderManager {
     @PersistenceContext
     private EntityManager em;
     //@Inject
@@ -50,12 +51,7 @@ public class OrderManagerEJB {
     private static final Logger logger = Logger.getLogger(
                 "com.cigarshop.ejb.OrderManagerEJB");
 
-    public List<Category> listCigarCategories()
-    {
-        Query query = em.createNamedQuery("Category.findAll");
-        return query.getResultList();
-    }
-
+    @Override
     public Order addCigarToCart(long productId)
     {
         InventorySystem inventory = new InventorySystemGateway();
@@ -78,7 +74,8 @@ public class OrderManagerEJB {
                     new Object[] { productId, cart == null ? "null" : cart.getOrderId() });
         return cart;
     }
-    
+
+    @Override
     public Order findCart()
     {
         Order cart = null;
@@ -102,7 +99,8 @@ public class OrderManagerEJB {
         return cart;
         
     }
-
+    
+    @Override
     public List<Order> findAllOrders()
     {
         List<Order> orders = null;
@@ -124,6 +122,8 @@ public class OrderManagerEJB {
         }
         return orders;
     }
+    
+    @Override
     public void removeOrder(Integer orderId) {
         try {
             Order order = em.find(Order.class, orderId);
@@ -137,6 +137,7 @@ public class OrderManagerEJB {
         }
     }
 
+    @Override
     public void updateCigarQuantity(LineItem lineItem, int quantity)
     {
         Order order = em.find(Order.class, lineItem.getOrder().getOrderId());

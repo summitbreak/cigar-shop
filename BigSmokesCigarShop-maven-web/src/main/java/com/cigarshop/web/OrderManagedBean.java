@@ -5,12 +5,13 @@
  */
 package com.cigarshop.web;
 
-import com.cigarshop.ejb.OrderManagerEJB;
-import com.cigarshop.ejb.ProductManagerEJB;
+import com.cigarshop.ejb.OrderManager;
+import com.cigarshop.ejb.ProductManager;
 import com.cigarshop.entity.Category;
 import com.cigarshop.entity.Cigar;
 import com.cigarshop.entity.LineItem;
 import com.cigarshop.entity.Order;
+import com.cigarshop.helper.InventorySystemGateway;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -25,9 +26,7 @@ import javax.faces.event.ActionEvent;
 @javax.enterprise.context.SessionScoped
 public class OrderManagedBean implements java.io.Serializable {
     @EJB
-    private ProductManagerEJB productManagerEJB;
-    @EJB
-    private OrderManagerEJB orderManagerEJB;
+    private OrderManager orderManagerEJB;
     private Order cart;
     private List<Order> allOrders;
     private static final Logger LOG = Logger.getLogger(OrderManagedBean.class.getName());
@@ -63,10 +62,11 @@ public class OrderManagedBean implements java.io.Serializable {
      */
     public String addCigarToCart(long productId)
     {
-        int unitsAvailable = productManagerEJB.inquireAvailability( productId);
         //TODO: check if there is not units available and display on the UI
+        //InventorySystem inventory = new InventorySystemGateway();
+        //int unitAvailable = inventory.inquireProductAvailability(productId);
         //if (unitsAvailable == 0 )
-            
+
         this.cart = orderManagerEJB.addCigarToCart(productId);
         //cigar.setQuantityAvailable(unitAvailable);
         return "lineItem.xhtml";
