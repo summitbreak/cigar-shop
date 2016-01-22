@@ -31,7 +31,7 @@ import javax.ejb.Startup;
 @Startup
 public class DBConfigBean {
     @EJB
-    private ProductManagerEJB productManagerEJB;
+    private ProductManager productManagerEJB;
 
     @PostConstruct
     public void createData() {
@@ -49,51 +49,6 @@ public class DBConfigBean {
         productManagerEJB.createCigar("ST", "Standard Cigar", "Standard Cigar Description", 10.00);
         productManagerEJB.createCigar("FL", "Flavoured Cigar", "Flavoured Cigar Description", 14.00);
         productManagerEJB.createCigar("ST", "Standard Cigar", "Malboro Standard Cigar", 16.00);
-/*
-        productManagerEJB.addPartToBillOfMaterial("SDFG-ERTY-BN", 7, "1234-5678-01", 1);
-        productManagerEJB.addPartToBillOfMaterial("SDFG-ERTY-BN", 7, "9876-4321-02", 2);
-        productManagerEJB.addPartToBillOfMaterial("SDFG-ERTY-BN", 7, "5456-6789-03", 3);
-        productManagerEJB.addPartToBillOfMaterial("SDFG-ERTY-BN", 7, "ABCD-XYZW-FF", 5);
-
-        productManagerEJB.createVendor(
-                100,
-                "WidgetCorp",
-                "111 Main St., Anytown, KY 99999",
-                "Mr. Jones",
-                "888-777-9999");
-        productManagerEJB.createVendor(
-                200,
-                "Gadget, Inc.",
-                "123 State St., Sometown, MI 88888",
-                "Mrs. Smith",
-                "866-345-6789");
-
-        productManagerEJB.createVendorPart("1234-5678-01", 1, "PART1", 100.00, 100);
-        productManagerEJB.createVendorPart("9876-4321-02", 2, "PART2", 10.44, 200);
-        productManagerEJB.createVendorPart("5456-6789-03", 3, "PART3", 76.23, 200);
-        productManagerEJB.createVendorPart("ABCD-XYZW-FF", 5, "PART4", 55.19, 100);
-        productManagerEJB.createVendorPart("SDFG-ERTY-BN", 7, "PART5", 345.87, 100);
-
-        Integer orderId = new Integer(1111);
-        productManagerEJB.createOrder(
-                orderId,
-                'N',
-                10,
-                "333 New Court, New City, CA 90000");
-        productManagerEJB.addLineItem(orderId, "1234-5678-01", 1, 3);
-        productManagerEJB.addLineItem(orderId, "9876-4321-02", 2, 5);
-        productManagerEJB.addLineItem(orderId, "ABCD-XYZW-FF", 5, 7);
-
-        orderId = new Integer(4312);
-        productManagerEJB.createOrder(
-                orderId,
-                'N',
-                0,
-                "333 New Court, New City, CA 90000");
-        productManagerEJB.addLineItem(orderId, "SDFG-ERTY-BN", 7, 1);
-        productManagerEJB.addLineItem(orderId, "ABCD-XYZW-FF", 5, 3);
-        productManagerEJB.addLineItem(orderId, "1234-5678-01", 1, 15);
-*/
     }
 
     @PreDestroy

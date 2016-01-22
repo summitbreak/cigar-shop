@@ -18,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.ejb.EJBException;
+import javax.ejb.Remote;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.jms.Connection;
@@ -37,16 +38,17 @@ import javax.persistence.Query;
  * @author smalyshev
  */
 @Stateless
-@LocalBean
-//@Named
-public class ProductManagerEJB {
+@Remote(ProductManager.class)
+//@LocalBean
+public class ProductManagerEJB implements ProductManager {
     @PersistenceContext
     private EntityManager em;
-    //@Inject
-    //private InventorySystem inventory;
+    @Inject
+    private InventorySystem inventory;
     private static final Logger logger = Logger.getLogger(
                 "com.cigarshop.ejb.ProductManagerEJB");
 
+    @Override
     public Category createCategory(String code, String name)
     {
         Category cat;
@@ -60,7 +62,8 @@ public class ProductManagerEJB {
         }
         return cat;
     }
-
+    
+    @Override
     public Cigar createCigar(String categoryCode, String name, String desc, Double price)
     {
         Cigar cigar;
@@ -76,22 +79,29 @@ public class ProductManagerEJB {
         return cigar;
     }
     
+    @Override
     public List<Category> listCigarCategories()
     {
         Query query = em.createNamedQuery("Category.findAll");
         return query.getResultList();
     }
-
+    
+    @Override
     public List<Cigar> findCigarsByCategory(String cat)
     {
         Query query = em.createNamedQuery("Cigar.findByCategoryCode");
         query.setParameter("categoryCode", cat);
         return query.getResultList();
     }
-    public int inquireAvailability(long productId)
+    
+    @Override
+    public Cigar getProductDetails(long productId)
     {
-        InventorySystemGateway inventory = new InventorySystemGateway();
+        //InventorySystemGateway inventory = new InventorySystemGateway();
         int unitAvailable = inventory.inquireProductAvailability(productId);
-        return unitAvailable;
+        
+        Cigar cigar = em.find(Cigar.class, productId);
+        cigar.setQuantityAvailable(unitAvailable);
+        return cigar;
     }
 }

@@ -5,20 +5,23 @@
  */
 package com.cigarshop.helper;
 
+import javax.enterprise.context.Dependent;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
 /**
  *
  * @author smalyshev
  */
-@Named
+// Since in beans.xml bean-discovery-mode="annotated"- have to use @Dependent fr this bean to be discovered
+@Dependent
 public class InventorySystemGateway implements InventorySystem 
 {
-    public InventorySystemGateway()
+/*    public InventorySystemGateway()
     {
         
     }
-    
+  */  
     @Override
     public int inquireProductAvailability(long productId)
     {
