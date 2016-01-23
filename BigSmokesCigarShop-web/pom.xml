@@ -8,11 +8,11 @@
   </parent>
 
     <groupId>com.bigsmokescigarshop</groupId>
-    <artifactId>BigSmokesCigarShop-maven-web</artifactId>
+    <artifactId>BigSmokesCigarShop-web</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>BigSmokesCigarShop-maven-web</name>
+    <name>BigSmokesCigarShop-web</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
@@ -27,7 +27,7 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>BigSmokesCigarShop-maven-ejb</artifactId>
+            <artifactId>BigSmokesCigarShop-business</artifactId>
             <version>${project.version}</version>
             <scope>provided</scope>
         </dependency>

@@ -1,3 +1,4 @@
-/BigSmokesCigarShop-maven-ejb/target/
-/BigSmokesCigarShop-maven-web/target/
-/BigSmokesCigarShop-maven-ear/target/
+/BigSmokesCigarShop-business/target/
+/BigSmokesCigarShop-web/target/
+/BigSmokesCigarShop-ear/target/
+/BigSmokesCigarShop-business/nbproject/
